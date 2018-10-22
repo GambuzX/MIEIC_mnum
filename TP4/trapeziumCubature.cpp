@@ -9,38 +9,32 @@ double trapeziumCubature(int n, double x0, double x1, double y0, double y1)
 {
 	double hx = (x1 - x0) / n;
 	double hy = (y1 - y0) / n;
+	double res=0;
 
-	double result = hx * hy / 4;
-
-	double sum0 = 0, sum1 = 0, sum2 = 0;
-
-	// SUM 0
-	sum0 = f(x0, y0) + f(x0, y1) + f(x1, y0) + f(x1, y1);
-
-	// SUM 1
-	for (double x = x0+hx; x <= x1-hx; x += hx)
+	for (double x = x0; x < (x1-0.00001); x += (2*hx))
 	{
-		sum1 += (f(x, y0) + f(x, y1));
-	}
-	for (double y = y0 + hy; y <= y1 - hy; y += hy)
-	{
-		sum1 += (f(x0, y) + f(x1, y));
-	}
+		for (double y = y0; y < (y1-0.00001); y += (2*hy))
+		{
+			double result = 0;
 
-	// SUM 2
-	for (double x = x0 + hx; x <= x1 - hx; x += hx)
-		for (double y = y0 + hy; y <= y1 - hy; y += hy)
-			sum2 += f(x, y);
+			double sum0 = 0, sum1 = 0, sum2 = 0;
 
-	result *= (sum0 + 2 * sum1 + 4 * sum2);
-	return result;
+			sum0 = f(x, y) + f(x, y+2*hy) + f(x+2*hx, y) + f(x+ 2 * hx, y+ 2 * hy);
+			sum1 = f(x + hx, y) + f(x + hx, y + 2 * hy) + f(x, y + hy) + f(x + 2 * hx, y + hy);
+			sum2 = f(x + hx, y + hy);
+
+			result = (sum0 + 2 * sum1 + 4 * sum2);
+			res += result;
+		}
+	}
+	res *= (hx * hy) / 4;
+	return res;
 }
 
 int main()
 {
 	int n = 4;
 	double x0 = 0, x1 = 0.5, y0 = 0, y1 = 0.5;
-
 	double result = trapeziumCubature(n, x0, x1, y0, y1);
 
 	cout << "Result:\t" << result << endl;
