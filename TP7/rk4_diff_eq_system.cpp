@@ -36,7 +36,7 @@ void rk4(double a, double b, double x, double y, double z, double h, double & yr
 }
 
 double qc(double s, double sl, double sll) { return (sl - s) / (sll - sl); }
-double error(double sl, double sll, int order) { return (sll - sl) / (pow(2, order) - 1); }
+double error(double sl, double sll, int order) { return abs((sll - sl)) / (pow(2, order) - 1); }
 
 int main()
 {
@@ -63,8 +63,8 @@ int main()
 
 	cout << endl;
 
-	cout << "Error y = " << error(yl, yll, 2) << endl;
-	cout << "Error z = " << error(zl, zll, 2) << endl;
+	cout << "Error y = " << error(yl, yll, 4) << endl;
+	cout << "Error z = " << error(zl, zll, 4) << endl;
 
 
 	return 0;
