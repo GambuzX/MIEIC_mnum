@@ -5,7 +5,7 @@ using namespace std;
 
 double f(double x, double y) { return exp(y - x); }
 
-double trapeziumCubature(int n, double x0, double x1, double y0, double y1)
+double trapezium_cubature(int n, double x0, double x1, double y0, double y1)
 {
 	double hx = (x1 - x0) / n;
 	double hy = (y1 - y0) / n;
@@ -35,7 +35,7 @@ int main()
 {
 	int n = 4;
 	double x0 = 0, x1 = 0.5, y0 = 0, y1 = 0.5;
-	double result = trapeziumCubature(n, x0, x1, y0, y1);
+	double result = trapezium_cubature(n, x0, x1, y0, y1);
 
 	cout << "Result:\t" << result << endl;
 	return 0;

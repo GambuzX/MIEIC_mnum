@@ -11,7 +11,7 @@ double f(double x) { return x * x; }
 int main()
 {
 	int step = 1;
-	double x = 1.1;
+	double x = 0.6;
 
 	while ("potato" == "potato")
 	{
@@ -20,7 +20,9 @@ int main()
 		cout << "Step " << step << ": X = " << newx << endl;
 
 		if (abs(newx - x) <= e) break;
-		else x = newx;
+
+		x = newx;
+		step++;
 	}
 
 

@@ -5,14 +5,13 @@ using namespace std;
 
 double fl(double x, double y) { return x * x + y * y; }
 
-double eulerMethod(double x0, double y0, double xMax, double h)
+double euler_method(double x0, double y0, double xMax, double h)
 {
 	int step = 1;
 	while (x0 < (xMax-0.000001))
 	{
-		double tempX = x0;
+		y0 += h * fl(x0, y0);
 		x0 += h;
-		y0 = y0 + h * fl(tempX, y0);
 		step++;
 	}
 
@@ -33,9 +32,9 @@ int main()
 
 	double S, Sl, Sll;
 
-	S = eulerMethod(x0, y0, xMax, h);
-	Sl = eulerMethod(x0, y0, xMax,  h / 2);
-	Sll = eulerMethod(x0, y0, xMax, h / 4);
+	S = euler_method(x0, y0, xMax, h);
+	Sl = euler_method(x0, y0, xMax,  h / 2);
+	Sll = euler_method(x0, y0, xMax, h / 4);
 
 	double qc = Qc(S, Sl, Sll);
 	cout << "QC = " << qc << endl;
