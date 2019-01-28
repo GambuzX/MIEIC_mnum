@@ -2,7 +2,7 @@
 
 Implementation of the numerical methods I learned about in this course.
 
-**Final Grade: ?**
+**Final Grade: 18**
 
 ### Technologies and Software Used
 * C++
